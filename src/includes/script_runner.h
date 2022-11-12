@@ -1,9 +1,10 @@
 #ifndef SCRIPT_RUNNER_H
+#define SCRIPT_RUNNER_H
+
 #include <cstdio>
 #include <cstdlib>
 #include "global.h"
 #include "parser.h"
-#define SCRIPT_RUNNER_H
 
 void run_script() {
   char ch, buffer[REPL_CMD_LENGTH] = "";
@@ -31,7 +32,6 @@ void run_script() {
     if (length == 0) continue;
 
     buffer[length] = '\0';
-
     parser(buffer, line, "Main");
   }
 

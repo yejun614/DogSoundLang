@@ -8,7 +8,7 @@
 #include "error.h"
 #include "function.h"
 
-int function = 0;
+int function_checker = 0;
 
 int white_space(char *s)
 {
@@ -29,7 +29,7 @@ int white_space(char *s)
 void int_parser(char *s, int line, char *function_name){
   int index = 0;
   int value = 0;
-  while (strncmp(s, "멍", 1) == 0) {
+  while (strncmp(s, "멍", 3) == 0) {
     index += 1;
     s += 3; //한글 1글자는 3Byte
   }
@@ -120,13 +120,12 @@ void conpare_parser(char *s, int line, char *function_name) {
  */
 void print_parser(char *s, int line, int value, char *format_string, char *function_name){
 
-  
-  
   int index = 0;
+
   s += 3*4; //한글 1글자는 3Byte
   if(s[0] != NULL)
   {
-
+    
     error("SyntaxError: invalid syntax", line, function_name);
   }
   printf(format_string, value);
@@ -168,7 +167,7 @@ void make_function(char *s, int line, char *function_name) //return function_nam
     {
       s++;
     }
-    else if( strncmp(s, "개껌", 1) == 0 )
+    else if( strncmp(s, "개껌", 6) == 0 )
     {
       s += 3*2;
       value++;
@@ -181,8 +180,9 @@ void make_function(char *s, int line, char *function_name) //return function_nam
   define_function(FUNCTION_NAME, value);
 }
 
-function_call(char *s, int line, char *function_name)
+void function_call(char *s, int line, char *function_name)
 {
+
   s += 3*3;
   s += white_space(s);
 
@@ -219,7 +219,7 @@ function_call(char *s, int line, char *function_name)
       s++;
       index++;
     }
-    else if( strncmp(s, "손", 1) == 0 )
+    else if( strncmp(s, "손", 3) == 0 )
     {
       s += 3*1;
       value = 3;
@@ -241,9 +241,7 @@ function_call(char *s, int line, char *function_name)
     }
     printf(")\n");
   #endif
-  char *temp = &parameter;
-  char **ttemp = &temp;
-  call_function(FUNCTION_NAME, ttemp, line);
+  call_function(FUNCTION_NAME, parameter, line);
 }
 
 /**
@@ -257,43 +255,45 @@ void parser(char *s, int line, char *function_name) {
   int first_parameter = 0;
 
   s += white_space(s);
-
-  if (function)
+  
+  if (function_checker)
   {
-    if (strncmp(s, "산책가자", 1) == 0)
+    if (strncmp(s, "산책가자", 12) == 0)
     {
-      function = 0;
-      return;
+      function_checker = 0;
+      s+= 3*4;
+      return ;
     }
     append_code_function(s, line);
     return ;
   }
 
-  if (strncmp(s, "손", 1) == 0) {
+  
+  if (strncmp(s, "손", 3) == 0) {
       first_parameter  = get_parser(s, line, function_name); //index
       s += first_parameter + 3; //3을 더해주는 이유는 손[3Byte] + !개수
       if (s[0] == ' ')
         s++;
       first_parameter = INT_VARS[first_parameter];
   }
-
-  if (strncmp(s, "멍", 1) == 0) {
+  
+  if (strncmp(s, "멍", 3) == 0) {
       int_parser(s, line, function_name);
   }
-  else if (strncmp(s, "크게짖어", 1) == 0) {
+  else if (strncmp(s, "크게짖어", 12) == 0) {
       print_parser(s, line, first_parameter, "%c", function_name);
   }
-  else if (strncmp(s, "작게짖어", 1) == 0) {
+  else if (strncmp(s, "작게짖어", 12) == 0) {
       print_parser(s, line, first_parameter, "%d", function_name);
   }
-  else if (strncmp(s, "개집", 1) == 0){
-    function = 1;
+  else if (strncmp(s, "개집", 6) == 0){
+    function_checker = 1;
     make_function(s, line, function_name); //parameter
   }
-  else if(strncmp(s, "우쭈쭈", 1) == 0) {
+  else if(strncmp(s, "우쭈쭈", 9) == 0) {
     function_call(s, line, function_name);
   }
-  else if (strncmp(s, "엄마가좋아아빠가좋아", 1) == 0) {
+  else if (strncmp(s, "엄마가좋아아빠가좋아", 30) == 0) {
     //pass
   }
   else {

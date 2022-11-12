@@ -1,13 +1,27 @@
 #ifndef REPL_H
+#define REPL_H
+
 #include "global.h"
 #include "parser.h"
-#define REPL_H
+
+/**
+ * @brief 강아지 아스키 아트 출력
+ */
+void print_dog_ascii_art() {
+  printf("\n      / \\__\n");
+  printf("     (    @\\___\n");
+  printf("    /         O   개소리 (DogSoundLang)\n");
+  printf("   /   (_____/    version 0.1\n");
+  printf("  /_____/   U\n\n");
+}
 
 /**
  * @brief REPL 모드
  * @return program exit code (0: 정상 종료)
  */
 int repl() {
+  print_dog_ascii_art();
+
   char inputCmd[REPL_CMD_LENGTH] = "";
 
   while (true) {

@@ -150,6 +150,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/result.o: src/result.cpp.o
+
+.PHONY : src/result.o
+
+# target to build an object file
+src/result.cpp.o:
+	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/src/result.cpp.o
+.PHONY : src/result.cpp.o
+
+src/result.i: src/result.cpp.i
+
+.PHONY : src/result.i
+
+# target to preprocess a source file
+src/result.cpp.i:
+	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/src/result.cpp.i
+.PHONY : src/result.cpp.i
+
+src/result.s: src/result.cpp.s
+
+.PHONY : src/result.s
+
+# target to generate assembly for a file
+src/result.cpp.s:
+	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/src/result.cpp.s
+.PHONY : src/result.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/result.o"
+	@echo "... src/result.i"
+	@echo "... src/result.s"
 .PHONY : help
 
 

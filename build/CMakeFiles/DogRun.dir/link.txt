@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/DogRun.dir/src/main.cpp.o  -o DogRun 
+/usr/bin/c++     CMakeFiles/DogRun.dir/src/main.cpp.o CMakeFiles/DogRun.dir/src/result.cpp.o  -o DogRun 

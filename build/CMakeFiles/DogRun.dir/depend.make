@@ -10,3 +10,5 @@ CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/repl.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/script_runner.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/main.cpp
 
+CMakeFiles/DogRun.dir/src/result.cpp.o: ../src/result.cpp
+

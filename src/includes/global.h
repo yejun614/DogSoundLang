@@ -42,6 +42,7 @@ map<string, Function> FUNCTIONS;
 #define RUN_NOTHING 0
 #define RUN_REPL 1
 #define RUN_SCRIPT 2
+#define RUN_EMBED_C_SRC 3
 
 /**
  * @brief REPL 모드에서 보이는 PROMPT 문자열

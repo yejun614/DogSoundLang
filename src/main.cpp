@@ -18,6 +18,10 @@ int main(int argc, char** argv) {
   case RUN_SCRIPT:
     run_script();
     break;
+
+  case RUN_EMBED_C_SRC:
+    printf("아직 개발중인 기능입니다.");
+    break;
   }
 
   return 0;

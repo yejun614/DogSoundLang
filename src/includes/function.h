@@ -80,7 +80,9 @@ void call_function(char *function_name, char args[][1024], int line_number) {
   line_number = 1;
 
   for (auto line = code.begin(); line != code.end(); line++) {
-    for (int param = it->second.param_count; param >= 0; param--) {
+    string current = *line;
+
+    for (int param = it->second.param_count-1; param >= 0; param--) {
       param_pattern = "개껌";
       for (int i = 0; i < param + 1; i++) {
         param_pattern += '!';
@@ -89,13 +91,13 @@ void call_function(char *function_name, char args[][1024], int line_number) {
       string::size_type pos = 0;
       param_str = args[param];
 
-      while ((pos = line->find(param_pattern, pos)) != string::npos) {
-        line->replace(pos, param_pattern.size(), param_str);
+      while ((pos = current.find(param_pattern, pos)) != string::npos) {
+        current.replace(pos, param_pattern.size(), param_str);
         pos += param_str.size();
       }
     }
 
-    strcpy(line_c_str, line->c_str());
+    strcpy(line_c_str, current.c_str());
     parser(line_c_str, line_number++, function_name);
   }
 }

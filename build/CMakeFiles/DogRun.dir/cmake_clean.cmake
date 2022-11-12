@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DogRun.dir/src/main.cpp.o"
+  "CMakeFiles/DogRun.dir/src/result.cpp.o"
   "DogRun"
   "DogRun.pdb"
 )

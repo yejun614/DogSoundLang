@@ -74,12 +74,12 @@ clean: CMakeFiles/DogRun.dir/clean
 CMakeFiles/DogRun.dir/all:
 	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/depend
 	$(MAKE) -f CMakeFiles/DogRun.dir/build.make CMakeFiles/DogRun.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/DogSoundLang/build/CMakeFiles --progress-num=1,2 "Built target DogRun"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/DogSoundLang/build/CMakeFiles --progress-num=1,2,3 "Built target DogRun"
 .PHONY : CMakeFiles/DogRun.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/DogRun.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/DogSoundLang/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/DogSoundLang/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DogRun.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/DogSoundLang/build/CMakeFiles 0
 .PHONY : CMakeFiles/DogRun.dir/rule

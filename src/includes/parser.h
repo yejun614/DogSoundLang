@@ -365,7 +365,7 @@ void parser(char *s, int line, char *function_name) {
       s+= 3*4;
       return ;
     }
-    if(if_checker == 1)
+    if(if_checker == 2)
       return ;
   }
   

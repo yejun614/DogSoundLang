@@ -39,42 +39,10 @@
     
     돌아가
 
+개집 :
+    개집 함수명(개껌, 개껌...) -> 개껌은 파리미터의 개수
+        코드
+    산책가자 -> END
 
-함수명
-(파리미터...)
-코드
-
-Runtime -> %s 엄마가좋아아빠가좋아 엄마? %s
-손!, -> 손! 엄마가좋아아빠가좋아 엄마? %s
-손!, 손!, 손! -> 손! 엄마가좋아아빠가좋아 엄마? %s
-
-
-개집 함수명(개껌!)
-    함수명
-        앞발
-            손!! 크게짖어
-            개껌! 크게짖어
-            개껌!
-        뒷발
-
-개집 함수명(개껌!) -> 다른함수 -> *fp, scanf 
-손!! 크게짖어\n개껌! 크게짖어\n개껌!
-
-
-스코프:
-    산책가자 : END
-
-손!! 크게짖어\n개껌! 크게짖어\n
-\n -> parser
-
-
-Liked List -> function_name, code, 파리미터 개수
-    if append -> function_name, 파리미터 개수
-        찾으면 -> 원래 코드 부분 날리고 인자로 전달받은
-        못찾 -> 링크드 리스트에 function_name,code 추가
-    if call -> function_name
-        찾으면 -> code리턴, 파리미터 개수
-        못찾 -> error.h에 not defined function 출력
-    if append_code() -> 문자열 붙이기
-char function_name[50]
-char *s
+우쭈쭈 :
+    우쭈쭈 왕(파리미터...) -> 왕 함수 호출

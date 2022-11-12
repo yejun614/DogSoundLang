@@ -15,13 +15,13 @@ int repl() {
     printf("%s", REPL_PROMPT);
 
     // 명령어 입력
-    if (!scanf("%s", inputCmd)) {
+    if (!scanf("%99[^\n]%*c", inputCmd)) {
       // 입력 없음
       break;
     }
 
     // 명령어 실행
-    parser(inputCmd, 1);
+    parser(inputCmd, 1, "Main");
   }
 
   return 0;

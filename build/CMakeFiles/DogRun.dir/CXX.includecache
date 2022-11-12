@@ -18,17 +18,41 @@ stdio.h
 stdlib.h
 -
 
+/workspaces/DogSoundLang/src/includes/function.h
+cstring
+-
+string
+-
+algorithm
+-
+global.h
 /workspaces/DogSoundLang/src/includes/global.h
+parser.h
+/workspaces/DogSoundLang/src/includes/parser.h
+error.h
+/workspaces/DogSoundLang/src/includes/error.h
+
+/workspaces/DogSoundLang/src/includes/global.h
+map
+-
+string
+-
+vector
+-
+utility
+-
 
 /workspaces/DogSoundLang/src/includes/parser.h
 stdio.h
+-
+string.h
 -
 global.h
 /workspaces/DogSoundLang/src/includes/global.h
 error.h
 /workspaces/DogSoundLang/src/includes/error.h
-string.h
--
+function.h
+/workspaces/DogSoundLang/src/includes/function.h
 
 /workspaces/DogSoundLang/src/includes/repl.h
 global.h
@@ -41,6 +65,8 @@ cstdio
 -
 cstdlib
 -
+global.h
+/workspaces/DogSoundLang/src/includes/global.h
 parser.h
 /workspaces/DogSoundLang/src/includes/parser.h
 

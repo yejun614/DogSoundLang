@@ -3,6 +3,7 @@
 
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/arguments.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/error.h
+CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/function.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/global.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/parser.h
 CMakeFiles/DogRun.dir/src/main.cpp.o: ../src/includes/repl.h

@@ -12,7 +12,7 @@ void run_script() {
   FILE *fp = fopen(SCRIPT_PATH, "r");
 
   if (fp == NULL) {
-    printf("[%s] 스크립트 파일을 열 수 없습니다.\n", SCRIPT_PATH);
+    printf("[run_script][%s] 스크립트 파일을 열 수 없습니다.\n", SCRIPT_PATH);
     exit(1);
   }
 
@@ -32,8 +32,7 @@ void run_script() {
 
     buffer[length] = '\0';
 
-    printf("line %d(%d): '%s'\n", line, length, buffer);
-    parser(buffer, line);
+    parser(buffer, line, "Main");
   }
 
   fclose(fp);

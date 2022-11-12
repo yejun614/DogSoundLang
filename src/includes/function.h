@@ -80,7 +80,7 @@ void call_function(char *function_name, char args[][1024], int line_number) {
   line_number = 1;
 
   for (auto line = code.begin(); line != code.end(); line++) {
-    for (int param = 0; param < it->second.param_count; param++) {
+    for (int param = it->second.param_count; param >= 0; param--) {
       param_pattern = "개껌";
       for (int i = 0; i < param + 1; i++) {
         param_pattern += '!';

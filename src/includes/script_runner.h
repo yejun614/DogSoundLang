@@ -32,6 +32,7 @@ void run_script() {
     if (length == 0) continue;
 
     buffer[length] = '\0';
+    // printf(" >> %s\n", buffer);
     parser(buffer, line, "Main");
   }
 

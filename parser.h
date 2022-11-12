@@ -1,8 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#define DEBUG
-
 #include <stdio.h>
 #include <string.h>
 
@@ -11,11 +9,6 @@
 #include "function.h"
 
 int function_checker = 0;
-int loop_checker = 0;
-int if_checker = 0;
-char loop_condition_code[REPL_CMD_LENGTH] = "";
-int loop_condition_left_index = 0;
-
 
 int white_space(char *s)
 {
@@ -27,51 +20,17 @@ int white_space(char *s)
   return index;
 }
 
-void m_int_parser(char *s, int line, char *function_name, int left){
-  int index = 0;
-  int value = 0;
-  int flag = 0;
-  while (strncmp(s, "망", 3) == 0) {
-    index++;
-    s += 3; //한글 1글자는 3Byte
-  }
-  while (s[0] == '!')
-  {
-    value++;
-    s++;
-  }
-  if (s[0] == '?')
-  {
-    s++;
-    flag = 1;
-  }
-  if(s[0] != NULL)
-  {
-    error("SyntaxError: invalid syntax", line, function_name);
-  }
-  if (flag){
-    INT_VARS[index] = INT_VARS[index]-value-INT_VARS[left];
-  }
-  else {
-    INT_VARS[index] = -value;
-  }
-  #ifndef DEBUG
-    printf("[m_int_parser][망%d]INT_VARS[%d] = %d\n", flag, index, INT_VARS[index]);
-  #endif
-}
-
 /**
  * @brief int형 변수를 선언하는 코드
  * @param[in] s 한 라인의 문자열
  * @param[in] line 해당 라인의 넘버 수
  * @return void
  */
-void p_int_parser(char *s, int line, char *function_name, int left){
+void int_parser(char *s, int line, char *function_name){
   int index = 0;
   int value = 0;
-  int flag = 0;
   while (strncmp(s, "멍", 3) == 0) {
-    index++;
+    index += 1;
     s += 3; //한글 1글자는 3Byte
   }
   while (s[0] == '!')
@@ -79,23 +38,13 @@ void p_int_parser(char *s, int line, char *function_name, int left){
     value++;
     s++;
   }
-  if (s[0] == '?')
-  {
-    s++;
-    flag = 1;
-  }
   if(s[0] != NULL)
   {
     error("SyntaxError: invalid syntax", line, function_name);
   }
-  if (flag){
-    INT_VARS[index] = INT_VARS[index]+value+INT_VARS[left];
-  }
-  else {
-    INT_VARS[index] = value;
-  }
+  INT_VARS[index] += value;
   #ifndef DEBUG
-    printf("[p_int_parser][멍%d]INT_VARS[%d] = %d\n", flag, index, INT_VARS[index]);
+    printf("[int_parser][멍]INT_VARS[%d] = %d\n", index, INT_VARS[index]);
   #endif
 }
 
@@ -155,7 +104,7 @@ int compare_parser(char *s, int line, char *function_name, int left) {
     right++;
   }
   #ifndef DEBUG
-    //printf("left : %d right : %d flag : %d\n", left, right, flag);
+    printf("left : %d right : %d flag : %d\n", left, right, flag);
   #endif
   if (flag == 0) {
     return INT_VARS[left] > INT_VARS[right];
@@ -165,6 +114,9 @@ int compare_parser(char *s, int line, char *function_name, int left) {
   }else if (flag == 2){
     return INT_VARS[left] == INT_VARS[right];
   }
+
+  
+
 }
 
 /**
@@ -305,9 +257,8 @@ void function_call(char *s, int line, char *function_name)
     }
     
   }
-  memset(parameter[index-1], 0, 1024);
   strncpy(parameter[index-1], s-value, value);
-  
+  printf("index : %d\n", index);
   #ifndef DEBUG
     printf("[call_function][우쭈쭈]%s(", FUNCTION_NAME);
     for(int i = 0; i < index; i++)
@@ -323,29 +274,6 @@ void function_call(char *s, int line, char *function_name)
   
 }
 
-void loop_parser(char *s, int line, char *function_name) {
-  s += 2*3;
-  s += white_space(s);
-  loop_condition_left_index = get_parser(s, line, function_name);
-  s += 3;
-  s += loop_condition_left_index;
-  s += white_space(s);
-
-  strcpy(loop_condition_code, s);
-  // printf("loop_code : %d %s\n", loop_condition_left_index, loop_condition_code);
-  // printf("%d\n", compare_parser(s, line, function_name, loop_condition_left_index));
-  define_function("loop_temp_func", 0);
-
-  #ifndef DEBUG
-    printf("[loop_parser][돌아] loop_code : %s", loop_condition_code);
-  #endif
-  // while (compare_parser(s, line, function_name, left))
-  // {
-
-  // }
-
-}
-
 /**
  * @brief 문자열과 라인 번호를 받아 해당 라인에 맞는 행위 실행
  * @param[in] s 한 라인의 문자열
@@ -357,17 +285,6 @@ void parser(char *s, int line, char *function_name) {
   int first_parameter = 0;
 
   s += white_space(s);
-  
-  if(if_checker){
-    if (strncmp(s, "산책가자", 12) == 0)
-    {
-      if_checker = 0;
-      s+= 3*4;
-      return ;
-    }
-    if(if_checker == 1)
-      return ;
-  }
   
   if (function_checker)
   {
@@ -381,49 +298,22 @@ void parser(char *s, int line, char *function_name) {
     return ;
   }
 
-  if (loop_checker)
-  {
-    if (strncmp(s, "산책가자", 12) == 0) {
-    char args[1][1024] = {
-          "",
-        };
-      while (compare_parser(
-      loop_condition_code,
-      line,
-      function_name,
-      loop_condition_left_index
-    )) {
-      loop_checker = 0;
-      call_function("loop_temp_func", args, line);
-    }
-      return;
-    }
-    
-    append_code_function(s, line);
-    return;
-
-  }
-
-
   
   if (strncmp(s, "손", 3) == 0) {
       first_parameter  = get_parser(s, line, function_name); //index
       s += first_parameter + 3; //3을 더해주는 이유는 손[3Byte] + !개수
-      if (s[0] == ' ')
-        s++;
-      first_parameter = INT_VARS[first_parameter];
+      s += white_space(s);
   }
   
   if (strncmp(s, "멍", 3) == 0) {
-      p_int_parser(s, line, function_name, first_parameter);
-  }else if(strncmp(s, "망", 3) == 0) {
-      m_int_parser(s, line, function_name, first_parameter);
+      int_parser(s, line, function_name);
   }
   else if (strncmp(s, "크게짖어", 12) == 0) {
-      print_parser(s, line, first_parameter, "%c", function_name);
+    
+      print_parser(s, line, INT_VARS[first_parameter], "%c", function_name);
   }
   else if (strncmp(s, "작게짖어", 12) == 0) {
-      print_parser(s, line, first_parameter, "%d", function_name);
+      print_parser(s, line, INT_VARS[first_parameter], "%d", function_name);
   }
   else if (strncmp(s, "개집", 6) == 0){
     function_checker = 1;
@@ -432,12 +322,11 @@ void parser(char *s, int line, char *function_name) {
   else if(strncmp(s, "우쭈쭈", 9) == 0) {
     function_call(s, line, function_name);
   }
-  else if (strncmp(s, "엄마가좋아아빠가좋아", 30) == 0) {
-    if_checker = 1 + compare_parser(s, line, function_name, first_parameter);
-  }
-  else if (strncmp(s, "돌아", 2) == 0) {
-    loop_parser(s, line, function_name);
-    loop_checker = 1;
+  else if (strncmp(s, "엄마가좋아아빠가좋아", 6) == 0) {
+    int a = 0;
+  
+    a = compare_parser(s, line, function_name, first_parameter);
+    printf("%d\n", a);
   }
   else {
       error("SyntaxError: invalid syntax", line, function_name);

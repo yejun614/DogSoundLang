@@ -3,6 +3,8 @@
 #include "./includes/repl.h"
 #include "./includes/script_runner.h"
 
+#define DEBUG
+
 int main(int argc, char** argv) {
   switch (arg_parser(argc, argv)) {
   case RUN_NOTHING:

@@ -41,7 +41,7 @@ int repl() {
     
     cmd[strlen(cmd) - 1] = '\0';
     
-    if (strcmp(cmd, "exit") == 0) {
+    if (strcmp(cmd, "그만해") == 0) {
       free(cmd);
       printf("뫙뫙\n");
       exit(0);

@@ -10,11 +10,14 @@
  * @brief 강아지 아스키 아트 출력
  */
 void print_dog_ascii_art() {
-  printf("\n      /\\__\n");
-  printf("     (   @\\___\n");
-  printf("    /         O   개소리 (DogSoundLang)\n");
-  printf("   /   (_____/    version 0.1\n");
-  printf("  /_____/   U\n\n");
+  printf("\n    /\\\n");
+  printf("   /  \\_____\n");
+  printf("  /    \\   *|_____\n");
+  printf("  \\        _______|\n");
+  printf("  /        \\_____    개소리 (DogSoundLang)\n");
+  printf("  /       ______/    version 0.1\n");
+  printf("  /______/\n\n");
+
 }
 
 /**

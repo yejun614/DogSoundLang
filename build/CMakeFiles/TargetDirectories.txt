@@ -1,3 +1,0 @@
-/workspaces/DogSoundLang/build/CMakeFiles/edit_cache.dir
-/workspaces/DogSoundLang/build/CMakeFiles/rebuild_cache.dir
-/workspaces/DogSoundLang/build/CMakeFiles/DogRun.dir

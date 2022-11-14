@@ -20,7 +20,7 @@ string LAST_DEFINED_FUNCTION;
  * @param function_name 함수 이름
  * @param param_count 파라미터 개수
  */
-void define_function(char *function_name, uint param_count) {
+void define_function(char *function_name, unsigned int param_count) {
   Function func;
   func.param_count = param_count;
 

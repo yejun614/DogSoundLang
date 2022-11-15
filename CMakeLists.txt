@@ -15,6 +15,6 @@ file(GLOB SRC
 )
 
 add_executable(
-  DogRun
+  DogLang
   ${SRC}
 )

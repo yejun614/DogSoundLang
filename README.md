@@ -14,7 +14,7 @@ $ cmake ..
 
 $ make
 
-$ ./DogRun
+$ ./DogLang
 ```
 
 ## 개소리 문법
